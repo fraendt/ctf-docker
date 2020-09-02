@@ -1,0 +1,10 @@
+#!/bin/bash
+IN="`pwd`"
+backd=""
+dirs=$(echo $IN | tr "/" "\n")
+for dir in $dirs
+do
+  backd="${backd}/.."
+done
+
+.${backd}/tol/ghidra_9.1.2_PUBLIC/ghidraRun

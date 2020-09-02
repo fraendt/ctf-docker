@@ -1,0 +1,9 @@
+#!/bin/bash
+IN="`pwd`"
+backd=""
+dirs=$(echo $IN | tr "/" "\n")
+for dir in $dirs
+do
+  backd="${backd}/.."
+done
+.${backd}/tol/rsactftool_/RsaCtfTool.py "$@"

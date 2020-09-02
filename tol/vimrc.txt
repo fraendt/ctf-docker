@@ -1,0 +1,214 @@
+" Don't try to be vi compatible
+set nocompatible
+
+" Helps force plugins to load correctly when it is turned back on below
+filetype off
+
+" TODO: Load plugins here (pathogen or vundle)
+
+" Turn on syntax highlighting
+syntax on
+
+" For plugins to load correctly
+filetype plugin indent on
+
+" TODO: Pick a leader key
+" let mapleader = ","
+
+" Security
+set modelines=0
+
+" Show line numbers
+set number
+
+" Show file stats
+set ruler
+
+" Blink cursor on error instead of beeping (grr)
+set visualbell
+
+" Encoding
+set encoding=utf-8
+
+" Whitespace
+set wrap
+set textwidth=79
+set formatoptions=tcqrn1
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set noshiftround
+
+" Cursor motion
+set scrolloff=3
+set backspace=indent,eol,start
+set matchpairs+=<:> " use % to jump between pairs
+runtime! macros/matchit.vim
+
+" Move up/down editor lines
+nnoremap j gj
+nnoremap k gk
+
+" Allow hidden buffers
+set hidden
+
+" Rendering
+set ttyfast
+
+" Status bar
+set laststatus=2
+
+" Last line
+set showmode
+set showcmd
+
+" Searching
+nnoremap / /\v
+vnoremap / /\v
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+map <leader><space> :let @/=''<cr> " clear search
+
+" Remap help key.
+inoremap <F1> <ESC>:set invfullscreen<CR>a
+nnoremap <F1> :set invfullscreen<CR>
+vnoremap <F1> :set invfullscreen<CR>
+
+" Textmate holdouts
+
+" Formatting
+map <leader>q gqip
+
+" Visualize tabs and newlines
+set listchars=tab:▸\ ,eol:¬
+" Uncomment this to enable by default:
+" set list " To enable by default
+" Or use your leader key + l to toggle on/off
+map <leader>l :set list!<CR> " Toggle tabs and EOL
+
+" Color scheme (terminal)
+set t_Co=256
+set background=dark
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+" in ~/.vim/colors/ and uncomment:
+" colorscheme solarized
+
+" Location for installing plugins
+call plug#begin('~/.vim/plugged')
+
+" Other plugins are specified with user/repo on Github or x.vim on vimscripts
+" Git integration (status bar and commands like Gblame)
+Plug 'tpope/vim-fugitive'
+" Add info to sidebar about git
+Plug 'airblade/vim-gitgutter'
+" Add file-management commands like :Delete, :Move, and :Rename
+Plug 'tpope/vim-eunuch'
+" Automatically adds 'ends' after ifs etc. in Ruby/Vimscript/Lua/Bourne Shell
+Plug 'tpope/vim-endwise'
+" Add parenthesis after autocompleted function
+Plug 'shougo/neopairs.vim'
+" Autocomplete from HTML snippets of a certain language
+Plug 'shougo/context_filetype.vim'
+" Provides a status line that provides handy info
+" From other plugins at the bottom of the screen
+Plug 'bling/vim-airline'
+" Snippets engine - requires actual snippets in a separate plugin
+Plug 'SirVer/ultisnips'
+" Visually displays indent levels as lines
+Plug 'nathanaelkane/vim-indent-guides'
+" Visually displays which XML/HTML/JSX tag is paired with current one
+Plug 'Valloric/MatchTagAlways'
+" Search with ripgrep (it is search tool agnostic)
+Plug 'mileszs/ack.vim'
+" View project tree
+Plug 'scrooloose/nerdtree'
+" Comment out code with ease in any language
+Plug 'scrooloose/nerdcommenter'
+" Lint / Check for syntax errors
+Plug 'w0rp/ale'
+" Highlights while editing and removes whitespace on save
+Plug 'ntpeters/vim-better-whitespace'
+" Split single line args to many
+Plug 'AndrewRadev/splitjoin.vim'
+" Color scheme
+Plug 'drewtempelmeyer/palenight.vim'
+" Change/delete surrounding quotes/brackets/tags
+Plug 'tpope/vim-surround'
+" Add extra text objects, e.g. for function arguments
+Plug 'wellle/targets.vim'
+" Run test under cursor
+Plug 'janko-m/vim-test'
+" Repeat command works with external plugins
+Plug 'tpope/vim-repeat'
+" Assisted closing of HTML etc. tags
+Plug 'alvan/vim-closetag'
+" Automatically close strings and brackets and braces etc.
+Plug 'jiangmiao/auto-pairs'
+" CSS3 Syntax
+Plug 'hail2u/vim-css3-syntax'
+" See CSS colours within Vim
+Plug 'ap/vim-css-color'
+" Needed solely to get textobj-function-syntax working
+Plug 'kana/vim-textobj-function'
+Plug 'haya14busa/vim-textobj-function-syntax'
+" Needed only for vim-textobj-rubyblock dependency
+Plug 'kana/vim-textobj-user'
+" Call external programs to format code
+Plug 'Chiel92/vim-autoformat'
+" Fuzzy search
+Plug 'junegunn/fzf.vim'
+" Handy bracket mappings ]q, ]<space>, etc.
+Plug 'tpope/vim-unimpaired'
+" Syntax highlighting for postgres
+Plug 'lifepillar/pgsql.vim'
+" Convert to snake, camel, dash, or dot case
+Plug 'tpope/vim-abolish'
+" Support editorconfig files (e.g. in PHP)
+Plug 'editorconfig/editorconfig-vim'
+
+" Async-vim is only here because it is required by vim-lsp
+Plug 'prabirshrestha/async.vim'
+" Languages server protocol connection
+Plug 'prabirshrestha/vim-lsp'
+
+" Language specific
+Plug 'pangloss/vim-javascript'
+" Provides JSX indentation
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'elzr/vim-json'
+
+Plug 'leafgarland/typescript-vim'
+
+Plug 'vim-ruby/vim-ruby'
+" Adds Ruby block objects
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+
+" Text objects for python
+Plug 'jeetsukumaran/vim-pythonsense'
+
+" Modern PHP syntax highlighting
+Plug 'StanAngeloff/php.vim'
+" Blade PHP templates
+Plug 'jwalton512/vim-blade'
+" Autocomplete functionality
+Plug 'prabirshrestha/asyncomplete.vim'
+" Autocomplete source - the buffer
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+" Autocomplete source - files
+Plug 'prabirshrestha/asyncomplete-file.vim'
+" Autocomplete source - language server protocol
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Autocomplete source - Ultisnips
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+" Autocomplete source - ctags
+Plug 'prabirshrestha/asyncomplete-tags.vim'
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
