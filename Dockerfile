@@ -18,14 +18,14 @@ ENV DEBIAN_FRONTEND = noninteractive
 
 
 RUN apt-get update --fix-missing && \
+    apt-get install -y dirmngr gnupg apt-transport-https ca-certificates software-properties-common && \
     apt-get install -y sudo make vim curl wget nmap zip unzip steghide foremost binutils exiftool tcpdump file gdb netcat ssh \
     nasm gcc gcc-multilib libc6-dbg zsh ltrace strace cmake radare2 socat ruby tmux p7zip hashcat nano && \
     apt install -y git-all && \
     apt install -y kali-desktop-xfce && \
     apt install -y tightvncserver && \
     apt-get install -y python-dev python3 python3-pip && curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py && python2 get-pip.py && rm get-pip.py && \
-    apt install -y openjdk-8-jdk && \
-    apt install -y openjdk-11-jdk && \
+    apt-get install -y openjdk-11-jdk && \
     apt-get install -y build-essential && \
     apt-get install -y nasm && \
     apt-get install -y libgmp3-dev && \
@@ -34,7 +34,7 @@ RUN apt-get update --fix-missing && \
     apt-get install -y libmpc-dev && \
     apt-get install -y gobuster && \
     apt-get install -y nikto && \
-    apt-get install -y sqlmap && \
+    apt-get install -y sqlmap openvpn && \
     apt-get install -y telnet volatility php && \
     apt-get install -y ruby-full && apt-get install -y rawtherapee && apt-get install -y hexedit && apt-get install -y wxhexeditor
 
@@ -47,14 +47,14 @@ RUN pip3 install --upgrade pip && python -m pip install --upgrade pip && \
     pip3 install --no-cache-dir cryptography==2.8 && python -m pip install --no-cache-dir cryptography==2.8 && \
     pip3 install --no-cache-dir urllib3==1.24.2 && python -m pip install --no-cache-dir urllib3==1.24.2 && \
     pip3 install --no-cache-dir requests==2.20.0 && python -m pip install --no-cache-dir requests==2.20.0 && \
-    pip3 install --no-cache-dir gmpy==1.17 && python -m pip install --no-cache-dir gympy==1.17 && \
+    pip3 install --no-cache-dir gmpy==1.17 && \
     pip3 install --no-cache-dir pyzmq==17.0.0 && python -m pip install --no-cache-dir pyzmq==17.0.0 && \
     pip3 install --no-cache-dir jupyter && python -m pip install --no-cache-dir jupyter && \
     pip3 install --no-cache-dir pwncat && python -m pip install --no-cache-dir pwncat && \
-    pip3 install --no-cache-dir gmpy2==2.0.8 && python -m pip install --no-cache-dir gympy==2.0.8 && \
+    pip3 install --no-cache-dir gmpy2==2.0.8 &&  \
     pip3 install --no-cache-dir pycryptodome==3.9.7 && python -m pip install --no-cache-dir pycryptodome==3.9.7 && \
     pip3 install --no-cache-dir bs4 && python -m pip install --no-cache-dir bs4 && \
-    pip3 install --no-cache-dir angr && python -m pip install --no-cache-dir angr && \
+    pip3 install --no-cache-dir angr && \
     pip3 install --no-cache-dir numpy && python -m pip install --no-cache-dir numpy && \
     python3 -m pip install ciphey --upgrade && \
     gem install one_gadget && \
@@ -67,7 +67,16 @@ RUN cd ../tol/ && wget https://ghidra-sre.org/ghidra_9.1.2_PUBLIC_20200212.zip &
     git clone https://github.com/Ganapati/RsaCtfTool rsactftool_ && \
     git clone https://github.com/zsh-users/zsh-syntax-highlighting && \
     git clone https://github.com/internetwache/GitTools && \
-    git clone https://github.com/EvilMuffinHa/ctftool ctftool_
+    git clone https://github.com/EvilMuffinHa/ctftool ctftool_ && \
+    git clone https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite peass && \
+    git clone https://github.com/Z3Prover/z3 z3_ && cd z3_ && python scripts/mk_make.py && cd build && make && make install
+
+# Installing sublime text
+
+#RUN apt-get update && cd ../tol/ && curl -fsSL https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - && \
+#    add-apt-repository "deb https://download.sublimetext.com/ apt/stable/" && \
+#    apt install -y sublime-text
+
 
 # Install nvm with node and npm
 
