@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python3 -c "print(__import__('secrets').token_urlsafe() + ''.join(__import__('secrets').choice(__import__('string').ascii_letters + __import__('string').digits) for i in range(16)))"

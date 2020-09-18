@@ -55,6 +55,7 @@ RUN pip3 install --upgrade pip && python -m pip install --upgrade pip && \
     pip3 install --no-cache-dir pycryptodome==3.9.7 && python -m pip install --no-cache-dir pycryptodome==3.9.7 && \
     pip3 install --no-cache-dir bs4 && python -m pip install --no-cache-dir bs4 && \
     pip3 install --no-cache-dir angr && \
+    pip install --no-cache-dir keystone-engine && pip install --no-cache-dir ropper && \
     pip3 install --no-cache-dir numpy && python -m pip install --no-cache-dir numpy && \
     python3 -m pip install ciphey --upgrade && \
     gem install one_gadget && \
@@ -109,8 +110,10 @@ ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
 
 # 100% installing rustscan
+# installing gh cli
 
-RUN cargo install rustscan
+RUN cargo install rustscan && wget "https://github.com/cli/cli/releases/download/v1.0.0/gh_1.0.0_linux_amd64.deb" && \
+	dpkg -i gh_1.0.0_linux_amd64.deb && apt -f install && rm gh_1.0.0_linux_amd64.deb
 
 # Boom run
 
